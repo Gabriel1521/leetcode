@@ -1,7 +1,7 @@
 # leetcode
 
 Dynamic Programming:
-LCS
+LCS/n
 01Backpack
 Minimum Path Sum
 Edit Distance
