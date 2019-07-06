@@ -55,3 +55,42 @@ class Solution:
                 s.append(node.right)
                 s.append(node.left)
         return res
+
+# 145. 二叉树的后序遍历
+
+
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        self.dfs(root,res)
+        return res
+
+    def dfs(self,root,res):
+        if not root:
+            return
+        self.dfs(root.left,res)
+        self.dfs(root.right,res)
+        res.append(root.val)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        s = [(root,False)]
+        while s:
+            node, v = s.pop()
+            if node:
+                if v:
+                    res.append(node.val)
+                else:
+                    s.append((node,True))
+                    s.append((node.right,False))
+                    s.append((node.left,False))
+        return res
+        

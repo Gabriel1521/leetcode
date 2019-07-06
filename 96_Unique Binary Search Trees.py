@@ -30,6 +30,41 @@ class Solution(object):
         :type n: int
         :rtype: List[TreeNode]
         """
+
+        return self.dfs(1, n) if n else []
+
+    def dfs(self,start,end):
+        if start > end:
+            return [None,]
+        result = []
+        for i in range(start, end+1):
+            left = self.dfs(start,i-1)
+            right = self.dfs(i+1,end)
+            for l in left:
+                for r in right:
+                    node = TreeNode(i)
+                    node.left = l
+                    node.right = r
+                    result.append(node)
+        return result
+
+    def dfs(self, start,end):
+        if start > end:
+            return [None,]
+        for i in range(start,end+1):
+            for l in self.dfs(start, i-1):
+                for r in self.dfs(i+1,end):
+                    node = TreeNode(i)
+                    node.left,node.right = l,r
+                    result.append(node)
+        return result
+
+class Solution(object):
+    def generateTrees(self, n):
+        """
+        :type n: int
+        :rtype: List[TreeNode]
+        """
         def generate_trees(start, end):
             if start > end:
                 return [None,]
@@ -44,8 +79,6 @@ class Solution(object):
 
                 # connect left and right subtrees to the root i
                 for l in left_trees:
-                    if l:
-                        print(l.val)
                     for r in right_trees:
                         current_tree = TreeNode(i)
                         current_tree.left = l
@@ -56,3 +89,28 @@ class Solution(object):
             return all_trees
 
         return generate_trees(1, n) if n else []
+
+
+
+
+class Solution(object):
+    def generateTrees(self, n):
+        """
+        :type n: int
+        :rtype: List[TreeNode]
+        """
+        if n == 0:
+            return [[]]
+        return self.dfs(1, n+1)
+
+    def dfs(self, start, end):
+        if start == end:
+            return None
+        result = []
+        for i in xrange(start, end):
+            for l in self.dfs(start, i) or [None]:
+                for r in self.dfs(i+1, end) or [None]:
+                    node = TreeNode(i)
+                    node.left, node.right  = l, r
+                    result.append(node)
+        return result
