@@ -16,3 +16,5 @@ class Solution(object):
                     dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
                 else:
                     dp[i][j] = 0
+
+        return dp[-1][-1]
