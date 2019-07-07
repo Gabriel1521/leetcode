@@ -24,40 +24,6 @@ class Solution(object):
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
-    def generateTrees(self, n):
-        """
-        :type n: int
-        :rtype: List[TreeNode]
-        """
-
-        return self.dfs(1, n) if n else []
-
-    def dfs(self,start,end):
-        if start > end:
-            return [None,]
-        result = []
-        for i in range(start, end+1):
-            left = self.dfs(start,i-1)
-            right = self.dfs(i+1,end)
-            for l in left:
-                for r in right:
-                    node = TreeNode(i)
-                    node.left = l
-                    node.right = r
-                    result.append(node)
-        return result
-
-    def dfs(self, start,end):
-        if start > end:
-            return [None,]
-        for i in range(start,end+1):
-            for l in self.dfs(start, i-1):
-                for r in self.dfs(i+1,end):
-                    node = TreeNode(i)
-                    node.left,node.right = l,r
-                    result.append(node)
-        return result
 
 class Solution(object):
     def generateTrees(self, n):
@@ -92,7 +58,6 @@ class Solution(object):
 
 
 
-
 class Solution(object):
     def generateTrees(self, n):
         """
@@ -100,16 +65,16 @@ class Solution(object):
         :rtype: List[TreeNode]
         """
         if n == 0:
-            return [[]]
+            return []
         return self.dfs(1, n+1)
 
     def dfs(self, start, end):
         if start == end:
-            return None
+            return [None,]
         result = []
         for i in xrange(start, end):
-            for l in self.dfs(start, i) or [None]:
-                for r in self.dfs(i+1, end) or [None]:
+            for l in self.dfs(start, i):
+                for r in self.dfs(i+1, end):
                     node = TreeNode(i)
                     node.left, node.right  = l, r
                     result.append(node)

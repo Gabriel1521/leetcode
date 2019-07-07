@@ -61,3 +61,20 @@ class Doubly Linked List:
 
     if temp is not None:
       self.head = temp.prev
+
+# 24. Swap Nodes in Pairs
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def swapPairs(self, head):
+        if head and head.next:
+            tmp = head.next
+            head.next = self.swapPairs(tmp.next)
+            tmp.next = head
+            return tmp
+        return head
