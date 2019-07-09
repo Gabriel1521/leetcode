@@ -161,29 +161,6 @@ def heap_sort(arr):
        big_endian(arr, 0, end - 1)          # 重新调整子节点的顺序  从顶开始调整
    return arr
 
-def max_heap(arr, start, end):
-    root = start
-    while True:
-        child = root * 2 + 1
-        if child > end:
-            break
-        if child + 1 <= end and arr[child] < arr[child+1]:
-            child += 1
-        if arr[root] < arr[child]:
-            arr[root], arr[child] = arr[child], arr[root]
-            root = child
-        else:
-            break
-
-def heap_sort(arr):
-    first = len(arr)//2 - 1
-    for start in range(first,-1,-1):
-        max_heap(arr,start,len(arr)-1)
-    for end in range(len(arr)-1,0,-1):
-        arr[0], arr[end] = arr[end], arr[0]
-        max_heap(arr,0,end-1)
-    return arr
-
 
 def main():
    l = [3, 1, 4, 9, 6, 7, 5, 8, 2, 10]
@@ -191,3 +168,49 @@ def main():
 
 if __name__ == "__main__":
    main()
+
+
+# n is size of heap
+def heapify(arr, n, i):
+    largest = i # Initialize largest as root
+    l = 2 * i + 1     # left = 2*i + 1
+    r = 2 * i + 2     # right = 2*i + 2
+
+    # See if left child of root exists and is
+    # greater than root
+    if l < n and arr[i] < arr[l]:
+        largest = l
+
+    # See if right child of root exists and is
+    # greater than root
+    if r < n and arr[largest] < arr[r]:
+        largest = r
+
+    # Change root, if needed
+    if largest != i:
+        arr[i],arr[largest] = arr[largest],arr[i] # swap
+
+        # Heapify the root.
+        heapify(arr, n, largest)
+
+# The main function to sort an array of given size
+def heapSort(arr):
+    n = len(arr)
+
+    # Build a maxheap.
+    for i in range(n, -1, -1):
+        heapify(arr, n, i)
+
+    # One by one extract elements
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i] # swap
+        heapify(arr, i, 0)
+
+# Driver code to test above
+
+arr = [ 12, 11, 13, 5, 6, 7]
+heapSort(arr)
+n = len(arr)
+print ("Sorted array is")
+for i in range(n):
+    print ("%d" %arr[i])
