@@ -208,9 +208,39 @@ def heapSort(arr):
 
 # Driver code to test above
 
-arr = [ 12, 11, 13, 5, 6, 7]
-heapSort(arr)
-n = len(arr)
-print ("Sorted array is")
-for i in range(n):
-    print ("%d" %arr[i])
+def heapify(arr,i,n):
+    largest = i # Initialize largest as root
+    l = 2 * i + 1     # left = 2*i + 1
+    r = 2 * i + 2     # right = 2*i + 2
+
+    if l < n and arr[i] < arr[l]:
+        largest = l
+
+    # See if right child of root exists and is
+    # greater than root
+    if r < n and arr[largest] < arr[r]:
+        largest = r
+
+    # Change root, if needed
+    if largest != i:
+        arr[i],arr[largest] = arr[largest],arr[i] # swap
+
+        # Heapify the root.
+        heapify(arr, largest, n)
+
+
+def heap_sort(arr):
+    n = len(arr)
+    for i in range(n, -1, -1):
+        heapify(arr,i,n)
+    for i in range(n-1,0,-1):
+        arr[i],arr[0] = arr[0],arr[i]
+        heapify(arr,0,i)
+    return arr
+
+def main():
+   l = [3, 1, 4, 9, 6, 7, 5, 8, 2, 10]
+   print(heap_sort(l))  # 原地排序
+
+if __name__ == "__main__":
+   main()
