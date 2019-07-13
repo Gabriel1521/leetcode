@@ -194,41 +194,6 @@ def heapify(arr, n, i):
         heapify(arr, n, largest)
 
 # The main function to sort an array of given size
-def heapSort(arr):
-    n = len(arr)
-
-    # Build a maxheap.
-    for i in range(n, -1, -1):
-        heapify(arr, n, i)
-
-    # One by one extract elements
-    for i in range(n-1, 0, -1):
-        arr[i], arr[0] = arr[0], arr[i] # swap
-        heapify(arr, i, 0)
-
-# Driver code to test above
-
-def heapify(arr,i,n):
-    largest = i # Initialize largest as root
-    l = 2 * i + 1     # left = 2*i + 1
-    r = 2 * i + 2     # right = 2*i + 2
-
-    if l < n and arr[i] < arr[l]:
-        largest = l
-
-    # See if right child of root exists and is
-    # greater than root
-    if r < n and arr[largest] < arr[r]:
-        largest = r
-
-    # Change root, if needed
-    if largest != i:
-        arr[i],arr[largest] = arr[largest],arr[i] # swap
-
-        # Heapify the root.
-        heapify(arr, largest, n)
-
-
 def heap_sort(arr):
     n = len(arr)
     for i in range(n, -1, -1):
@@ -236,6 +201,39 @@ def heap_sort(arr):
     for i in range(n-1,0,-1):
         arr[i],arr[0] = arr[0],arr[i]
         heapify(arr,0,i)
+    return arr
+
+def main():
+   l = [3, 1, 4, 9, 6, 7, 5, 8, 2, 10]
+   print(heap_sort(l))  # 原地排序
+
+if __name__ == "__main__":
+   main()
+
+
+
+def heapify(arr,start,end):
+    root = start
+    while True:
+        child = root * 2 + 1
+        if child > end:
+            break
+        if child+1 <= end and arr[child] < arr[child+1]:
+            child += 1
+        if arr[root] < arr[child]:
+            arr[root], arr[child] = arr[child], arr[root]
+            root = child
+        else:
+            break
+
+
+def heap_sort(arr):
+    first = len(arr)//2 - 1
+    for start in range(first,-1,-1):
+        heapify(arr,start,len(arr)-1)
+    for end in range(len(arr)-1,0,-1):
+        arr[0], arr[end] = arr[end],arr[0]
+        heapify(arr,0,end-1)
     return arr
 
 def main():
