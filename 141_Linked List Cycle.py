@@ -24,6 +24,7 @@ class Solution(object):
         return True
 
 
+
 # 142. Linked List Cycle II
 
 class Solution(object):
