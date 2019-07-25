@@ -57,4 +57,3 @@ void findWhat(int i, int j) {				//最优解情况
 			findWhat(i - 1, j - w[i]);
 		}
 	}
-」

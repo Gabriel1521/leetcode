@@ -18,5 +18,3 @@ class Solution(object):
                     dp[i][j] = 0
 
         return dp[-1][-1]
-
-#
