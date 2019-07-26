@@ -1,5 +1,3 @@
-# 
-
 # 695. Max Area of Island
 
 class Solution(object):
