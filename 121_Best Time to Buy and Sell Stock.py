@@ -43,4 +43,29 @@ class Solution:
                 dp[k][i] = max(dp[k][i - 1], prices[i] + pre_max)
         return dp[-1][-1]
 
-    
+
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not prices:
+            return 0
+
+        profits = []
+        max_profit = 0
+        min_price = prices[0]
+        for price in prices:
+            min_price = min(min_price,price)
+            max_profit = max(max_profit, price-min_price)
+            profits.append(max_profit)
+
+        max_price = prices[-1]
+        max_profit = 0
+        total_profit = 0
+        for i in range(len(prices)-1,-1,-1):
+            max_price = max(prices[i], max_price)
+            max_profit = max(max_profit, max_price - prices[i])
+            total_profit = max(total_profit, max_profit+profits[i])
+        return total_profit
