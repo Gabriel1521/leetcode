@@ -1,6 +1,5 @@
 # 65. Valid Number
 
-
 class Solution(object):
     def isNumber(self, s):
         """
