@@ -7,7 +7,7 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        result = 1;
+        result = 1
         k -= 1
         while k > 0:
             count = 0
