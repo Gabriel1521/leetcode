@@ -53,4 +53,5 @@ class Solution:
                 # 切断刚刚出列的那个链表的头结点引用
                 lists[index] = head.next
                 head.next = None
+
         return dummy_node.next

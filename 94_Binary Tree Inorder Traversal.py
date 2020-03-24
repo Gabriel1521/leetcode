@@ -123,3 +123,33 @@ class Solution:
                     s.append((node.right,False))
                     s.append((node.left,False))
         return res
+
+
+# MorrisTravel
+
+
+def MorrisTravel(root):
+    node = root
+    while node != None:
+        if node.left == None:
+            print(node.val,end=" ")
+            node = node.right
+        else:
+            pre = getPredecessor(node)
+            if pre.right= None:
+                pre.right = node
+                node = node.left
+            elif pre.right == node:
+                pre.right = None
+                print(node.val,end=" ")
+                node = node.right
+
+
+
+def getPredecessor(node):
+    pre = node
+    if node.left != None:
+        pre = pre.left
+        while pre.right != None and pre.right != node:
+            pre= pre.right
+    return pre
