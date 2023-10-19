@@ -1,4 +1,5 @@
 // 70. Climbing Stairs
+#include <vector>
 
 class Solution {
 public:
