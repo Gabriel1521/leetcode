@@ -31,17 +31,17 @@ public:
             dq.push_back(i);
         }
 
-        res.push_back(num[dq.front()]);
+        res.push_back(num[dq[0]]);
 
         for (int j=k;j<n;j++){
-            if (dq.front()+k <= j){
+            if (dq[0]+k <= j){
                 dq.pop_front();
             }
             while (!dq.empty() && num[j] >= num[dq.back()]){
                 dq.pop_back();
             }
             dq.push_back(j);
-            res.push_back(num[dq.front()]);
+            res.push_back(num[dq[0]]);
         }
 
         return res;
