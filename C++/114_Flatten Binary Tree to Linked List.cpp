@@ -29,9 +29,9 @@ public:
         else
             return leftTail;
     }
+
     void flatten(TreeNode* root) {
         flattenTree(root);
-
     }
 };
 

@@ -47,6 +47,7 @@ private:
     }
 };
 
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -79,3 +80,17 @@ public:
         dfs(root->right,result);
     }
 };
+while (node || !s.empty()){
+    while (node){
+        s.push(node);
+        node = node->left;
+    }
+    node = s.top();
+    s.pop();
+
+    k -= 1;
+    if (k==0)   return node->val;
+
+    node = node->right;
+
+}
