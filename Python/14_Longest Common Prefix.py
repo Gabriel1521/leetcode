@@ -8,3 +8,6 @@ class Solution:
                 return strs[0][:i]
         
         return min(strs)
+    
+# Time complexity : O(S) , where S is the sum of all characters in all strings.
+# Space complexity : O(1). We only used constant extra space.
