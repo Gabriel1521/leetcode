@@ -15,6 +15,22 @@ class Solution:
             usedChar[s[i]] = i
 
         return maxLength
+    
+# 3. Longest Substring Without Repeating Characters
+
+class Solution:
+    # @return an integer
+    def lengthOfLongestSubstring(self, s):
+        n = len(s)
+        start = res = 0
+        d = dict()
+
+        for i in range(n):
+            if s[i] in d:
+                start = max(start, d[s[i]]+1)
+            res = max(res, i-start+1)
+            d[s[i]] = i
+        return res
 
 # 159. Longest Substring with At Most Two Distinct Characters
 
