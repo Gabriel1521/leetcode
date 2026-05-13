@@ -6,15 +6,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        i = 0
-        j = len(nums)-1
-        while i<j:
-            m = (i+j)//2
-            if nums[m] > nums[j]:
-                i = m+1
+        l = 0
+        h = len(nums)-1
+        while l<h:
+            mid = (l+h)//2
+            if nums[mid] > nums[h]:
+                l = mid+1
             else:
-                j = m
-        return nums[i]
+                h = mid
+        return nums[l]
 
 # 154. Find Minimum in Rotated Sorted Array II
 
