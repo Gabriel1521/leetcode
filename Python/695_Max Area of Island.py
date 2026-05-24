@@ -40,3 +40,27 @@ class Solution(object):
             self.dfs(grid,i+1,j,tag)
             self.dfs(grid,i,j-1,tag)
             self.dfs(grid,i,j+1,tag)
+
+
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid:
+            return 0
+        m = len(grid)
+        n = len(grid[0])
+
+        max_area = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    area = self.dfs(i, j, grid)
+                    max_area = max(max_area, area)
+        return max_area
+    
+    def dfs(self, i, j, grid):
+        m = len(grid)
+        n = len(grid[0])
+        if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == 0:
+            return 0
+        grid[i][j] = 0
+        return 1 + self.dfs(i+1, j, grid) + self.dfs(i-1,j, grid) + self.dfs(i, j+1,grid) + self.dfs(i, j-1, grid)
