@@ -73,3 +73,25 @@ class Solution(object):
 
         res = intervals[:a] + [[a1,b1]] + intervals[b+1:]
         return res
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        new_start, new_end = newInterval
+        n = len(intervals)
+        i = 0
+        res = []
+
+        while i < n and intervals[i][1] < new_start:
+            res.append(intervals[i])
+            i += 1
+
+        while i < n and intervals[i][0] <= new_end:
+            new_start = min(new_start, intervals[i][0])
+            new_end = max(new_end, intervals[i][1])
+            i += 1
+        res.append([new_start, new_end])
+
+        while i < n:
+            res.append(intervals[i])
+            i += 1
+        return res
